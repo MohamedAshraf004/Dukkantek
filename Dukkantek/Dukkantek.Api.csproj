@@ -12,4 +12,8 @@
     <Folder Include="Controllers\" />
   </ItemGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Dukkantek.DataAccess\Dukkantek.DataAccess.csproj" />
+  </ItemGroup>
+
 </Project>

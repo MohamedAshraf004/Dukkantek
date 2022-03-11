@@ -1,4 +1,6 @@
 using Dukkantek.DataAccess.Data;
+using Dukkantek.DataAccess.Repos;
+using Dukkantek.Domain.IRepos;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -31,6 +33,11 @@ namespace Dukkantek
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Dukkantek", Version = "v1" });
             });
+
+            services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+
+
+
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

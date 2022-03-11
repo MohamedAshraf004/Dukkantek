@@ -24,16 +24,13 @@ namespace Dukkantek.DataAccess.Data
         {
             ChangeTracker.DetectChanges();
             var timestamp = DateTime.Now;
-            var entities = ChangeTracker.Entries().Where(r =>
-                (r.State == EntityState.Added || r.State == EntityState.Modified));
+            var entities = ChangeTracker.Entries()
+                .Where(r => r.State == EntityState.Added || r.State == EntityState.Modified);
             foreach (var entry in entities)
             {
                 entry.Property("UpdateDate").CurrentValue = timestamp;
-
                 if (entry.State == EntityState.Added)
-                {
                     entry.Property("InsertDate").CurrentValue = timestamp;
-                }
             }
 
             return base.SaveChangesAsync(acceptAllChangesOnSuccess, cancellationToken);

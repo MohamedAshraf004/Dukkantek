@@ -1,6 +1,9 @@
 ﻿using System.Threading.Tasks;
+using AutoMapper;
+using Dukkantek.Domain.Contracts;
 using Dukkantek.Domain.Contracts.Requests;
 using Dukkantek.Domain.IRepos;
+using Dukkantek.Domain.Models;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,10 +14,12 @@ namespace Dukkantek.Api.Controllers
     public class ProductsController : ControllerBase
     {
         private readonly IProductRepository _productRepository;
+        private readonly IMapper _mapper;
 
-        public ProductsController(IProductRepository productRepository)
+        public ProductsController(IProductRepository productRepository,IMapper mapper)
         {
             _productRepository = productRepository;
+            _mapper = mapper;
         }
 
         [HttpGet("Count")]
@@ -26,8 +31,11 @@ namespace Dukkantek.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> ProductAsync(int id)
             => Ok(await _productRepository.GetFirstOrDefaultAsync(x=>x.Id==id));
-        //[HttpPost]
-        //public async Task<IActionResult> ProductAsync(CreateProductRequest request)
-        //    => Ok(await _productRepository.AddAsync());
+        [HttpPost]
+        public async Task<IActionResult> ProductAsync(CreateProductRequest request)
+            => Ok(new Response<bool>
+            {
+                IsSuccess = await _productRepository.AddAsync(_mapper.Map<Product>(request))
+            });
     }
 }

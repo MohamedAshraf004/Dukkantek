@@ -1,3 +1,5 @@
+using System;
+using System.Reflection;
 using Dukkantek.DataAccess.Data;
 using Dukkantek.DataAccess.Repos;
 using Dukkantek.Domain.IRepos;
@@ -36,7 +38,7 @@ namespace Dukkantek
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository,ProductRepository>();
-
+            services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 
         }

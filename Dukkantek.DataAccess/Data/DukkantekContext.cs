@@ -1,8 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Security.Claims;
-using System.Text;
 using System.Threading;
 using System.Threading.Tasks;
 using Dukkantek.Domain.Models;
@@ -48,11 +45,11 @@ namespace Dukkantek.DataAccess.Data
 
             modelBuilder.Entity<InventoryProduct>(entity =>
             {
-                entity.HasOne<Product>(x => x.Product)
+                entity.HasOne(x => x.Product)
                     .WithMany(x => x.ProductInventories)
                     .HasForeignKey(x => x.ProductId)
                     .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne<Inventory>(x => x.Inventory)
+                entity.HasOne(x => x.Inventory)
                     .WithMany(x => x.InventoryProducts)
                     .HasForeignKey(x=>x.InventoryId)
                     .OnDelete(DeleteBehavior.NoAction);
@@ -61,7 +58,7 @@ namespace Dukkantek.DataAccess.Data
 
             modelBuilder.Entity<Product>(entity =>
             {
-                entity.HasOne<ProductCategory>(x => x.ProductCategory)
+                entity.HasOne(x => x.ProductCategory)
                     .WithMany(x => x.Products)
                     .HasForeignKey(x => x.CategoryId)
                     .OnDelete(DeleteBehavior.NoAction);

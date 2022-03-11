@@ -17,6 +17,12 @@ namespace Dukkantek.Domain.Profiles
                 .ReverseMap();
             CreateMap<InventoryProduct, CreateInventoryProductRequest>()
                 .ReverseMap();
+            CreateMap<Order, CreateOrderRequest>()
+                .ReverseMap();
+            CreateMap<OrderDetail, CreateOrderDetailRequest>()
+                .ReverseMap();
+            CreateMap<OrderDetailsInvtProduct, CreateOrderDetailsInvtProductRequest>()
+                .ReverseMap();
         }
     }
 }

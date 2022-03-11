@@ -18,6 +18,9 @@ namespace Dukkantek.DataAccess.Data
         public DbSet<ProductCategory> ProductCategories { get; set; }
         public DbSet<Inventory> Inventories { get; set; }
         public DbSet<InventoryProduct> InventoryProducts { get; set; }
+        public DbSet<Order> Orders { get; set; }
+        public DbSet<OrderDetail> OrderDetails { get; set; }
+        public DbSet<OrderDetailsInvtProduct> OrderDetailsInvtProducts { get; set; }
 
         #region Tracker Changes
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())

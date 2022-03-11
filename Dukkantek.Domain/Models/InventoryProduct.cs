@@ -1,4 +1,5 @@
-﻿using System.ComponentModel.DataAnnotations.Schema;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 
 namespace Dukkantek.Domain.Models
 {
@@ -13,6 +14,10 @@ namespace Dukkantek.Domain.Models
 
         [InverseProperty(nameof(Models.Inventory.InventoryProducts))]
         public Inventory Inventory { get; set; }
+
+        [InverseProperty(nameof(OrderDetailsInvtProduct.ProductInventory))]
+        public ICollection<OrderDetailsInvtProduct> OrderDetailsInvtProducts { get; set; }
+            = new List<OrderDetailsInvtProduct>();
 
     }
 }

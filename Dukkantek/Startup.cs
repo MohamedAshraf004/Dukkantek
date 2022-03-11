@@ -38,6 +38,7 @@ namespace Dukkantek
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
             services.AddScoped<IProductRepository,ProductRepository>();
+            services.AddScoped<IOrderRepository, OrderRepository>();
             services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 

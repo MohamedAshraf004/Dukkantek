@@ -35,6 +35,7 @@ namespace Dukkantek
             });
 
             services.AddScoped(typeof(IRepository<>), typeof(Repository<>));
+            services.AddScoped<IProductRepository,ProductRepository>();
 
 
 

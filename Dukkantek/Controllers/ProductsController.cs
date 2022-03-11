@@ -29,7 +29,7 @@ namespace Dukkantek.Api.Controllers
         [HttpGet]
         public async Task<IActionResult> ProductsAsync()
             => Ok(await _productRepository.GetAllAsync());
-        [HttpGet]
+        [HttpGet("{id}")]
         public async Task<IActionResult> ProductAsync(int id)
             => Ok(await _productRepository.GetFirstOrDefaultAsync(x=>x.Id==id));
         [HttpPost]
@@ -38,7 +38,7 @@ namespace Dukkantek.Api.Controllers
             {
                 IsSuccess = await _productRepository.AddAsync(_mapper.Map<Product>(request))
             });
-        [HttpPut]
+        [HttpPut("{id}")]
         public async Task<IActionResult> ChangeProductStatusAsync(int id, ProductStatus productStatus)
             => Ok((await _productRepository.UpdateProductStatusAsync(id, productStatus)));
 

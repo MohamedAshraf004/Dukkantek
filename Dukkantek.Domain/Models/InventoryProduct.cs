@@ -6,6 +6,7 @@ namespace Dukkantek.Domain.Models
     {
         public int InventoryId { get; set; }
         public int ProductId { get; set; }
+        public double Quantity { get; set; }
 
         [InverseProperty(nameof(Models.Product.ProductInventories))]
         public Product Product { get; set; }

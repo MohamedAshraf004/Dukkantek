@@ -4,6 +4,7 @@ using Dukkantek.Domain.Contracts;
 using Dukkantek.Domain.Contracts.Requests;
 using Dukkantek.Domain.IRepos;
 using Dukkantek.Domain.Models;
+using Dukkantek.Domain.Models.Enums;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -37,5 +38,10 @@ namespace Dukkantek.Api.Controllers
             {
                 IsSuccess = await _productRepository.AddAsync(_mapper.Map<Product>(request))
             });
+        [HttpPut]
+        public async Task<IActionResult> ChangeProductStatusAsync(int id, ProductStatus productStatus)
+            => Ok((await _productRepository.UpdateProductStatusAsync(id, productStatus)));
+
+
     }
 }

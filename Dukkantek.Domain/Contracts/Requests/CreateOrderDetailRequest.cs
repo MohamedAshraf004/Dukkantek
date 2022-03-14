@@ -4,6 +4,7 @@
     {
         public double Amount { get; set; }
         public double Price { get; set; }
+        public int ProductId { get; set; }
 
 
     }

@@ -11,8 +11,6 @@ namespace Dukkantek.Domain.Contracts.Requests
     {
         public double Amount { get; set; }
 
-        public ICollection<CreateOrderDetailsInvtProductRequest> OrderDetailsInvtProducts { get; set; }
-            = new List<CreateOrderDetailsInvtProductRequest>();
 
     }
 }

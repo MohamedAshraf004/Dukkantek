@@ -16,11 +16,8 @@ namespace Dukkantek.DataAccess.Data
 
         public DbSet<Product> Products { get; set; }
         public DbSet<ProductCategory> ProductCategories { get; set; }
-        public DbSet<Inventory> Inventories { get; set; }
-        public DbSet<InventoryProduct> InventoryProducts { get; set; }
         public DbSet<Order> Orders { get; set; }
         public DbSet<OrderDetail> OrderDetails { get; set; }
-        public DbSet<OrderDetailsInvtProduct> OrderDetailsInvtProducts { get; set; }
 
         #region Tracker Changes
         public override Task<int> SaveChangesAsync(bool acceptAllChangesOnSuccess, CancellationToken cancellationToken = new CancellationToken())
@@ -42,19 +39,10 @@ namespace Dukkantek.DataAccess.Data
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-
-            modelBuilder.Entity<InventoryProduct>(entity =>
-            {
-                entity.HasOne(x => x.Product)
-                    .WithMany(x => x.ProductInventories)
-                    .HasForeignKey(x => x.ProductId)
-                    .OnDelete(DeleteBehavior.NoAction);
-                entity.HasOne(x => x.Inventory)
-                    .WithMany(x => x.InventoryProducts)
-                    .HasForeignKey(x=>x.InventoryId)
-                    .OnDelete(DeleteBehavior.NoAction);
-               
-            });
+            modelBuilder.Entity<Product>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<ProductCategory>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<Order>().HasQueryFilter(x => !x.IsDeleted);
+            modelBuilder.Entity<OrderDetail>().HasQueryFilter(x => !x.IsDeleted);
 
             modelBuilder.Entity<Product>(entity =>
             {
@@ -64,6 +52,22 @@ namespace Dukkantek.DataAccess.Data
                     .OnDelete(DeleteBehavior.NoAction);
 
             });
+
+            modelBuilder.Entity<OrderDetail>(entity =>
+            {
+                entity.HasOne(x => x.Product)
+                    .WithMany(x => x.OrderDetails)
+                    .HasForeignKey(x => x.ProductId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+                entity.HasOne(x => x.Order)
+                    .WithMany(x => x.OrderDetails)
+                    .HasForeignKey(x => x.OrderId)
+                    .OnDelete(DeleteBehavior.NoAction);
+
+            });
+
+
             base.OnModelCreating(modelBuilder);
         }
     }

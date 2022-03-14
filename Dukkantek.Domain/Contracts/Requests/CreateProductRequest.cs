@@ -21,7 +21,5 @@ namespace Dukkantek.Domain.Contracts.Requests
 
         public int CategoryId { get; set; }
 
-        public ICollection<CreateInventoryProductRequest> ProductInventories { get; set; }
-            = new HashSet<CreateInventoryProductRequest>();
     }
 }

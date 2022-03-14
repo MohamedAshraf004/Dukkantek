@@ -20,9 +20,10 @@ namespace Dukkantek.Domain.Models
         [ForeignKey(nameof(CategoryId))]
         [InverseProperty(nameof(Models.ProductCategory.Products))]
         public ProductCategory ProductCategory { get; set; }
-        [InverseProperty(nameof(Models.InventoryProduct.Product))]
-        public ICollection<InventoryProduct> ProductInventories { get; set; }
-            = new HashSet<InventoryProduct>();
+
+        [InverseProperty(nameof(Models.OrderDetail.Product))]
+        public ICollection<OrderDetail> OrderDetails { get; set; }
+            = new List<OrderDetail>();
 
     }
 }

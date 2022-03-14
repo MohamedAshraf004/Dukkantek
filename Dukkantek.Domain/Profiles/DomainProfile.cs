@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using AutoMapper;
 using Dukkantek.Domain.Contracts.Requests;
 using Dukkantek.Domain.Models;
@@ -15,12 +11,15 @@ namespace Dukkantek.Domain.Profiles
         {
             CreateMap<Product, CreateProductRequest>()
                 .ReverseMap();
-          
+
             CreateMap<Order, CreateOrderRequest>()
-                .ReverseMap();
+                .ReverseMap()
+                .ForMember(dest => dest.Total, 
+                    op => 
+                        op.MapFrom(src => src.OrderDetails.Sum(s => s.Price)));
             CreateMap<OrderDetail, CreateOrderDetailRequest>()
                 .ReverseMap();
-          
+
         }
     }
 }

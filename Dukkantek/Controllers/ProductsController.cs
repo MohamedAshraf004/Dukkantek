@@ -5,7 +5,6 @@ using Dukkantek.Domain.Contracts.Requests;
 using Dukkantek.Domain.IRepos;
 using Dukkantek.Domain.Models;
 using Dukkantek.Domain.Models.Enums;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dukkantek.Api.Controllers

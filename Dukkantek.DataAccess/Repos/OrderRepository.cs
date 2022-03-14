@@ -1,15 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using AutoMapper;
 using Dukkantek.DataAccess.Data;
 using Dukkantek.Domain.Contracts;
 using Dukkantek.Domain.Contracts.Requests;
 using Dukkantek.Domain.IRepos;
 using Dukkantek.Domain.Models;
-using Microsoft.EntityFrameworkCore;
 
 namespace Dukkantek.DataAccess.Repos
 {

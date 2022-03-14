@@ -1,7 +1,6 @@
 ﻿using System.Threading.Tasks;
 using Dukkantek.Domain.Contracts.Requests;
 using Dukkantek.Domain.IRepos;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace Dukkantek.Api.Controllers
